@@ -2,6 +2,7 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/Factory/LandVehicleFactory.php';
+require __DIR__.'/Composite/SuperHero.php';
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,6 +21,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
             $car = LandVehicleFactory::createLandVehicle($vehicleType);
             $car->move(3);
+
+            $superHero = new SuperHero();
+            $superHero->setSuperPowers("Fly,Swim,Another boring superpower");
+            $superHero->activateSuperPower();
 
             return $output->writeln("<info>$result</info>");
         })
