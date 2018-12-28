@@ -2,6 +2,9 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/Factory/LandVehicleFactory.php';
+require __DIR__.'/Builder/Villain.php';
+require __DIR__.'/Builder/VillainBuilder.php';
+
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,6 +23,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 
             $car = LandVehicleFactory::createLandVehicle($vehicleType);
             $car->move(3);
+
+            $johnyLawrence = (new VillainBuilder())
+                ->withName("Johny Lawrence")
+                ->withASadStory("had a mean super-rich stepfather")
+                ->withAnIntelligenceLevel("a below average intelligence")
+                ->withAppearance("a bully appearance")
+                ->withAMortalEnemy("Daniel Larusso")
+                ->withAnEvilPower("spread the Cobra Kai life-values all over the world")
+                ->build();
+            $johnyLawrence->doYourEvil();
 
             return $output->writeln("<info>$result</info>");
         })
