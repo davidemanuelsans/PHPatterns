@@ -2,6 +2,7 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/Factory/LandVehicleFactory.php';
+require_once __DIR__.'/Facade/NanbanDiplomat.php';
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,6 +21,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
             $car = LandVehicleFactory::createLandVehicle($vehicleType);
             $car->move(3);
+
+            $pedrinhoPortuguese = new NanbanDiplomat();
+            echo($pedrinhoPortuguese->talkToTheShogun());
 
             return $output->writeln("<info>$result</info>");
         })
